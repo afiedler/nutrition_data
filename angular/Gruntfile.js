@@ -400,13 +400,6 @@ module.exports = function (grunt) {
       gitCleanRailsPublic: {
         command: 'git rm -rf <%= yeoman.rails_dist %>'
       }
-    },
-
-    // Githooks
-    githooks: {
-      all: {
-        'pre-commit': 'copy-rails'
-      }
     }
   });
 
