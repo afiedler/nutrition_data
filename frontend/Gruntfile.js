@@ -341,7 +341,10 @@ module.exports = function (grunt) {
           'images/{,*/}*.{webp}',
           'styles/*',
           'scripts/*',
-          'fonts/*'
+          'fonts/*',
+          // These included for IE8
+          'bower_components/es5-shim/*',
+          'bower_components/json3/*'
         ]
       }
     },
