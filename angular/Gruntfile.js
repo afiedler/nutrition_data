@@ -393,7 +393,7 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
-    }
+    },
 
     // shell comments
     shell: {
