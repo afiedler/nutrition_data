@@ -15,6 +15,9 @@ gem 'compass'
 # Heroku requirements
 gem 'rails_12factor', group: :production
 
+# Use ActiveModel Serializers for JSON generation
+gem 'active_model_serializers'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
