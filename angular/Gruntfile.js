@@ -151,15 +151,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp',
-      rails: {
-        options: {
-          force: true
-        },
-        files: [{
-          src: ['<%= yeoman.rails_dist %>/*']
-        }]
-      }
+      server: '.tmp'
     },
 
     // Add vendor prefixed styles
@@ -342,7 +334,15 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= yeoman.dist %>',
         dest: '<%= yeoman.rails_dist %>',
-        src: '*'
+        src: [
+          '*.{ico,png,txt}',
+          '*.html',
+          'views/{,*/}*.html',
+          'images/{,*/}*.{webp}',
+          'styles/*',
+          'scripts/*',
+          'fonts/*'
+        ]
       }
     },
 
@@ -395,10 +395,17 @@ module.exports = function (grunt) {
       }
     },
 
-    // shell comments
+    // shell commands
     shell: {
       gitCleanRailsPublic: {
         command: 'git rm -rf <%= yeoman.rails_dist %>'
+      }
+    },
+
+    // Githooks
+    githooks: {
+      all: {
+        'pre-commit': 'copy-rails'
       }
     }
   });
