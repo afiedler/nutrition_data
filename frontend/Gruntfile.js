@@ -349,7 +349,7 @@ module.exports = function (grunt) {
           }, {
             expand: true,
             cwd: '<%= yeoman.dist %>/bower_components/select2/',
-            dest: '<%= yeoman.railsDist %>',
+            dest: '<%= yeoman.railsDist %>/styles',
             src: [
               '*.png'
             ]
