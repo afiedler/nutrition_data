@@ -22,7 +22,8 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      rails_dist: '../public'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -150,7 +151,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      rails: {
+        options: {
+          force: true
+        },
+        files: [{
+          src: ['<%= yeoman.rails_dist %>/*']
+        }]
+      }
     },
 
     // Add vendor prefixed styles
@@ -328,6 +337,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      rails: {
+        expand: true,
+        cwd: '<%= yeoman.dist %>',
+        dest: '<%= yeoman.rails_dist %>',
+        src: '*'
       }
     },
 
@@ -377,6 +392,13 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      }
+    }
+
+    // shell comments
+    shell: {
+      gitCleanRailsPublic: {
+        command: 'git rm -rf <%= yeoman.rails_dist %>'
       }
     }
   });
@@ -433,4 +455,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('copy-rails', ['shell:gitCleanRailsPublic', 'copy:rails']);
+
 };
