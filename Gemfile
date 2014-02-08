@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -10,6 +11,9 @@ gem 'pg'
 
 # Include compass for the Angular app
 gem 'compass'
+
+# Heroku requirements
+gem 'rails_12factor', group: :production
 
 
 # To use ActiveModel has_secure_password
