@@ -331,19 +331,29 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       },
       rails: {
-        expand: true,
-        cwd: '<%= yeoman.dist %>',
-        dest: '<%= yeoman.railsDist %>',
-        src: [
-          '*.{ico,png,txt}',
-          '*.html',
-          'views/**',
-          'images/**',
-          'styles/*',
-          'scripts/**',
-          'fonts/**',
-          'bower_components/**'
-        ]
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.dist %>',
+            dest: '<%= yeoman.railsDist %>',
+            src: [
+              '*.{ico,png,txt}',
+              '*.html',
+              'views/**',
+              'images/**',
+              'styles/*',
+              'scripts/**',
+              'fonts/**',
+              'bower_components/**'
+            ]
+          }, {
+            expand: true,
+            cwd: '<%= yeoman.dist %>/bower_components/select2/',
+            dest: '<%= yeoman.railsDist %>',
+            src: [
+              '*.png'
+            ]
+          }]
       }
     },
 
