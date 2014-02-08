@@ -4,8 +4,9 @@ class FoodsController < ApplicationController
     render json: @food, serializer: FoodSerializer
   end
 
-  def list
-    @foods = Food.where("upper(short_desc) LIKE '?%'", [params[:short_desc].upcase])
-    render json: @foods, serializer: FoodShortSerializer
+  def index
+    @foods = Food.where("upper(short_desc) LIKE ?", [params[:short_desc].upcase.gsub('%','') + '%'])
+      .limit(25)
+    render json: @foods, each_serializer: FoodShortSerializer
   end
 end

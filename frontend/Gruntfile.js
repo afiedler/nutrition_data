@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist',
-      rails_dist: '../public'
+      railsDist: '../public'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
           ],
           middleware: function (connect, options) {
             if (!Array.isArray(options.base)) {
-                options.base = [options.base];
+              options.base = [options.base];
             }
 
             // Setup the proxy
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
 
             // Serve static files.
             options.base.forEach(function(base) {
-                middlewares.push(connect.static(base));
+              middlewares.push(connect.static(base));
             });
 
             // Make directory browse-able.
@@ -333,7 +333,7 @@ module.exports = function (grunt) {
       rails: {
         expand: true,
         cwd: '<%= yeoman.dist %>',
-        dest: '<%= yeoman.rails_dist %>',
+        dest: '<%= yeoman.railsDist %>',
         src: [
           '*.{ico,png,txt}',
           '*.html',
@@ -401,7 +401,7 @@ module.exports = function (grunt) {
     // shell commands
     shell: {
       gitCleanRailsPublic: {
-        command: 'git rm -rf <%= yeoman.rails_dist %>'
+        command: 'git rm -rf <%= yeoman.railsDist %>'
       }
     }
   });

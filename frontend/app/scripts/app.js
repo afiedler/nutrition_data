@@ -4,7 +4,8 @@ angular.module('angularApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.select2'
 ])
   .config(function ($routeProvider) {
     $routeProvider
