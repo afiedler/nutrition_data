@@ -342,9 +342,7 @@ module.exports = function (grunt) {
           'styles/*',
           'scripts/*',
           'fonts/*',
-          // These included for IE8
-          'bower_components/es5-shim/*',
-          'bower_components/json3/*'
+          'bower_components/**'
         ]
       }
     },
