@@ -26,10 +26,10 @@ class FoodSerializer < ActiveModel::Serializer
   def weights
     r = []
     unless object.weight_1_desc.empty?
-      r << { id: 1, name: object.weight_1_desc }
+      r << { id: 1, name: object.weight_1_desc, weight: object.weight_1_grams.to_f }
     end
     unless object.weight_2_desc.empty?
-      r << { id: 2, name: object.weight_2_desc }
+      r << { id: 2, name: object.weight_2_desc, weight: object.weight_2_grams.to_f }
     end
     r
   end
@@ -39,7 +39,7 @@ class FoodSerializer < ActiveModel::Serializer
   def grouped_attributes(list)
     list.map do |v|
       r = {}
-      r[v] = object.send(v) unless (object.send(v).nil? || object.send(v) == 0.0)
+      r[v] = object.send(v).to_f unless (object.send(v).nil? || object.send(v) == 0.0)
       r
     end.reduce(:merge)
   end
