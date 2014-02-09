@@ -1,5 +1,5 @@
 class FoodSerializer < ActiveModel::Serializer
-  attributes :id, :short_desc, :vitamins, :macronutrients
+  attributes :id, :short_desc, :vitamins, :macronutrients, :weights
 
   VITAMIN_FIELDS = [:calcium, :iron, :magnesium, :phosphorus, :sodium, :zinc, :copper, :manganese,
     :selenium, :vitamin_c, :thiamin, :riboflavin, :niacin, :panto_acid, :vitamin_b6, :total_folate,
@@ -21,6 +21,17 @@ class FoodSerializer < ActiveModel::Serializer
 
   def fats
     grouped_attributes(MACRO_FIELDS)
+  end
+
+  def weights
+    r = []
+    unless object.weight_1_desc.empty?
+      r << { id: 1, name: object.weight_1_desc }
+    end
+    unless object.weight_2_desc.empty?
+      r << { id: 2, name: object.weight_2_desc }
+    end
+    r
   end
 
   protected

@@ -5,8 +5,13 @@ class FoodsController < ApplicationController
   end
 
   def index
-    @foods = Food.where("upper(short_desc) LIKE ?", [params[:short_desc].upcase.gsub('%','') + '%'])
-      .limit(25)
+    @foods = Food.limit(25)
+
+    if params[:short_desc].present?
+      @foods =
+        @foods.where("upper(short_desc) LIKE ?", [params[:short_desc].upcase.gsub('%','') + '%'])
+    end
+
     render json: @foods, each_serializer: FoodShortSerializer
   end
 end
