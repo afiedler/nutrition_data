@@ -7,16 +7,37 @@
   <h3 class="text-muted">Nutrition Data</h3>
 </div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <pre ng-bind="selectedFood | json"></pre>
-  <input type="text" ui-select2="foodSelectOptions" ng-model="selectedFood">
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
+<div class="row">
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-9">
+    <div class="form-group">
+      <label>Start entering a food</label>
+      <input type="text"
+             ui-select2="foodSelectOptions"
+             ng-model="selectedFood"
+             class="form-control">
+    </div>
+    <div class="row" ng-hide="!selectedFood">
+      <div class="col-md-7">
+        <label>Serving amount</label>
+        <select
+          ui-select2
+          ng-model="selectedWeightId"
+          class="form-control">
+          <option ng-repeat="w in weights" value="{{w.id}}">{{w.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label>Number of servings</label>
+        <input type="text" min="0" ng-model="selectedQty" class="form-control">
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 <div class="row marketing">
   <h4>HTML5 Boilerplate</h4>
@@ -34,5 +55,5 @@
 </div>
 
 <div class="footer">
-  <p>♥ from the Yeoman team</p>
+  <p></p>
 </div>

@@ -14,7 +14,6 @@ angular.module('angularApp')
     };
 
     $scope.foodSelectOptions = {
-      placeholder: "Search for a food",
       minimumInputLength: 1,
       ajax: {
         data: function (term) {
@@ -32,7 +31,7 @@ angular.module('angularApp')
       initSelection : function (element, callback) {
         var id = element.val();
         $http.get("/api/foods/" + id).then(function(response) {
-          response.data.food.text = response.data.food.short_desc;
+          if(response.data.food) { response.data.food.text = response.data.food.short_desc; }
           callback(response.data.food);
         });
       }
@@ -40,9 +39,10 @@ angular.module('angularApp')
 
     $scope.selectedFood = null;
 
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.$watch('selectedFood', function() {
+      if($scope.selectedFood) {
+        $scope.weights = $scope.selectedFood.weights || [];
+      }
+    });
+
   });

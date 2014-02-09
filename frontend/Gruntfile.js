@@ -353,7 +353,8 @@ module.exports = function (grunt) {
             src: [
               '*.png'
             ]
-          }]
+          }
+        ]
       }
     },
 
